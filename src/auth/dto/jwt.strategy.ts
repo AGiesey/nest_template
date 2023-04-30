@@ -5,9 +5,11 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 import { User } from "../user.entity";
 import { JwtPayload } from "./jwt-payload.interface";
 import { Repository } from "typeorm";
+import { Logger } from "@nestjs/common";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
+    private logger = new Logger("JwtStrategy", {timestamp: true})
     constructor(
         @InjectRepository(User)
         private usersRepositry: Repository<User>
@@ -26,6 +28,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         })
 
         if (!user) {
+            this.logger.debug(`User email "${email} did not validate"`);
             throw new UnauthorizedException();
         }
 

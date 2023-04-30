@@ -3,6 +3,10 @@
 https://medium.com/tomorrowapp/the-complex-world-of-calendars-4a1bff1c4bfa
 https://medium.com/tomorrowapp/the-complex-world-of-calendars-database-design-fccb3a71a74b
 
+https://github.com/pinojs/pino (hosts fav)
+https://github.com/trentm/node-bunyan
+https://github.com/winstonjs/winston
+
 # This app was proudly built using Nest.js
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>

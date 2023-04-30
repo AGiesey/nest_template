@@ -7,9 +7,11 @@ import * as bcrypt from 'bcrypt';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from 'jsonwebtoken';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
+    private logger = new Logger("AuthService", {timestamp: true})
     constructor(
         @InjectRepository(User)
         private userRepository: Repository<User>,
@@ -33,8 +35,10 @@ export class AuthService {
             await this.userRepository.save(user);
         } catch (error) {
             if (error.code === '23505') { // duplicate email
+                this.logger.debug(`Unable to create user with existing email "${user.email}"`)
                 throw new ConflictException(`User with email ${email} already exists`);
             } else {
+                this.logger.error(`Unable to save user "${user.email}" for unknown reason`, error.stack);
                 throw new InternalServerErrorException();
             }
         }
