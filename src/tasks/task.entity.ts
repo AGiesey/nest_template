@@ -2,9 +2,10 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TaskStatus } from "./task-status.enum";
 import { User } from "src/auth/user.entity";
 import { Exclude } from "class-transformer";
+import { BaseEntity } from "src/common/base-entity";
 
 @Entity()
-export class Task {
+export class Task extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

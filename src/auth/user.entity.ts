@@ -1,11 +1,12 @@
+import { BaseEntity } from "src/common/base-entity";
 import { Task } from "src/tasks/task.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
 
     @PrimaryGeneratedColumn('uuid')
-    userId: string;
+    id: string;
 
     @Column()
     firstName: string;
